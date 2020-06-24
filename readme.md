@@ -25,9 +25,8 @@ attr := []createhtml.Attributes{
 
 // if there have any val in class tag 
 // will be this will auto append in class tag ex : <th class'another-val text-default'>
-// if val > condition <th class='text-default'>
-// or val < condition <th class='text-danger'>
-// Condition will compared with val
+// if val > condition <th class='text-default'> or val < condition <th class='text-danger'>
+// operator available can check in struct Operator{}
 exp := []createhtml.Expression{}
 exp1 := Expression{
     Condition: 50,
