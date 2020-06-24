@@ -24,17 +24,17 @@ func (e *Expression) Expression() string {
 	if fsInt && ssInt {
 		switch e.Operator {
 		case Equal:
-			return e.Equal(fsStr || ssStr)
+			return e.Equal(fsInt || ssInt)
 		case NotEqual:
-			return e.NotEqual(fsStr || ssStr)
+			return e.NotEqual(fsInt || ssInt)
 		case LessOrEqual:
-			return e.LessOrEqual(fsStr || ssStr)
+			return e.LessOrEqual(fsInt || ssInt)
 		case Less:
-			return e.Less(fsStr || ssStr)
+			return e.Less(fsInt || ssInt)
 		case Greater:
-			return e.Greater(fsStr || ssStr)
+			return e.Greater(fsInt || ssInt)
 		case GreaterOrEqual:
-			return e.GreaterOrEqual(fsStr || ssStr)
+			return e.GreaterOrEqual(fsInt || ssInt)
 		}
 	}
 
