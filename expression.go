@@ -1,16 +1,16 @@
 package createhtml
 
 type Expression struct {
-	firstStatement  interface{}
-	SecondStatement interface{}
-	Operator        Operator
-	Expected        string
-	Default         string
+	firstStatement interface{}
+	Condition      interface{}
+	Operator       Operator
+	Expected       string
+	Default        string
 }
 
 func (e *Expression) Expression() string {
 	fsStr, fsInt := StringOrInt(e.firstStatement)
-	ssStr, ssInt := StringOrInt(e.SecondStatement)
+	ssStr, ssInt := StringOrInt(e.Condition)
 
 	if fsStr && ssStr {
 		switch e.Operator {
@@ -43,13 +43,13 @@ func (e *Expression) Expression() string {
 
 func (e *Expression) Equal(stringOrInt bool) string {
 	if stringOrInt {
-		if e.firstStatement.(string) == e.SecondStatement.(string) {
+		if e.firstStatement.(string) == e.Condition.(string) {
 			return e.Expected
 		}
 		return e.Default
 	}
 
-	if e.firstStatement.(int) == e.SecondStatement.(int) {
+	if e.firstStatement.(int) == e.Condition.(int) {
 		return e.Expected
 	}
 	return e.Default
@@ -57,13 +57,13 @@ func (e *Expression) Equal(stringOrInt bool) string {
 
 func (e *Expression) NotEqual(stringOrInt bool) string {
 	if stringOrInt {
-		if e.firstStatement.(string) != e.SecondStatement.(string) {
+		if e.firstStatement.(string) != e.Condition.(string) {
 			return e.Expected
 		}
 		return e.Default
 	}
 
-	if e.firstStatement.(int) == e.SecondStatement.(int) {
+	if e.firstStatement.(int) == e.Condition.(int) {
 		return e.Expected
 	}
 	return e.Default
@@ -74,7 +74,7 @@ func (e *Expression) LessOrEqual(stringOrInt bool) string {
 		return e.Default
 	}
 
-	if e.firstStatement.(int) <= e.SecondStatement.(int) {
+	if e.firstStatement.(int) <= e.Condition.(int) {
 		return e.Expected
 	}
 	return e.Default
@@ -85,7 +85,7 @@ func (e *Expression) Less(stringOrInt bool) string {
 		return e.Default
 	}
 
-	if e.firstStatement.(int) < e.SecondStatement.(int) {
+	if e.firstStatement.(int) < e.Condition.(int) {
 		return e.Expected
 	}
 	return e.Default
@@ -96,7 +96,7 @@ func (e *Expression) GreaterOrEqual(stringOrInt bool) string {
 		return e.Default
 	}
 
-	if e.firstStatement.(int) >= e.SecondStatement.(int) {
+	if e.firstStatement.(int) >= e.Condition.(int) {
 		return e.Expected
 	}
 	return e.Default
@@ -107,7 +107,7 @@ func (e *Expression) Greater(stringOrInt bool) string {
 		return e.Default
 	}
 
-	if e.firstStatement.(int) > e.SecondStatement.(int) {
+	if e.firstStatement.(int) > e.Condition.(int) {
 		return e.Expected
 	}
 	return e.Default

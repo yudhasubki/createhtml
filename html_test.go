@@ -18,10 +18,10 @@ func TestHtml(t *testing.T) {
 
 	exp := []Expression{}
 	exp1 := Expression{
-		SecondStatement: 50,
-		Operator:        LessOrEqual,
-		Expected:        "text-danger",
-		Default:         "text-default",
+		Condition: 50,
+		Operator:  LessOrEqual,
+		Expected:  "text-danger",
+		Default:   "text-default",
 	}
 	exp = append(exp, exp1)
 
