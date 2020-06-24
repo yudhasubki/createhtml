@@ -70,10 +70,9 @@ func init() {
 func makeMapTag() {
 	v := reflect.ValueOf(TagName)
 	MapTag = make(map[string]string)
-		for i := 0; i < v.NumField(); i++ {
-			MapTag[v.Field(i).String()] = v.Field(i).String()
-		}
-	})
+	for i := 0; i < v.NumField(); i++ {
+		MapTag[v.Field(i).String()] = v.Field(i).String()
+	}
 }
 
 func (h *Html) AddClass(class interface{}) *Html {
@@ -123,11 +122,10 @@ func (h *Html) Tag(tagName string) (string, error) {
 	}
 
 	h.tag.name = tagName
-	h.render()
-	return h.elements, nil
+	return h.render(), nil
 }
 
-func (h *Html) render() {
+func (h *Html) render() string {
 	elements := make([]string, 0)
 	if len(h.Data.AttributesOptions) > 0 {
 		options := make(chan string)
@@ -140,7 +138,7 @@ func (h *Html) render() {
 		}
 	}
 
-	h.elements = strings.Join(elements, "\n")
+	return strings.Join(elements, "\n")
 }
 
 func (h *Html) elementTemplate(params ...interface{}) string {
