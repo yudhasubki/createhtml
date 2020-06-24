@@ -53,6 +53,14 @@ if err != nil {
     log.Fatal(err)
 }
 fmt.Println(th)
+
+/**
+result will be :
+<th class='text-xs text-default' data-id='dd'> 75 <th/>
+<th class='text-xs text-default' data-id='dd'> 90 <th/>
+<th class='text-xs text-default' data-id='dd'> 80 <th/>
+<th class='text-xs text-danger' data-id='dd'> 40 <th/>
+*/
 ```
 
 ## Contributing
