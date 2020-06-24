@@ -61,7 +61,19 @@ type Tag struct {
 }
 
 func init() {
-	makeMapList()
+	once := sync.Once{}
+	once.Do(func() {
+		makeMapTag()
+	})
+}
+
+func makeMapTag() {
+	v := reflect.ValueOf(TagName)
+	MapTag = make(map[string]string)
+		for i := 0; i < v.NumField(); i++ {
+			MapTag[v.Field(i).String()] = v.Field(i).String()
+		}
+	})
 }
 
 func (h *Html) AddClass(class interface{}) *Html {
@@ -103,17 +115,6 @@ func (h *Html) makeExpression(v interface{}, expression chan string) {
 		}
 	}
 	expression <- *expressionReplacer
-}
-
-func makeMapList() {
-	v := reflect.ValueOf(TagName)
-	MapTag = make(map[string]string)
-	once := sync.Once{}
-	once.Do(func() {
-		for i := 0; i < v.NumField(); i++ {
-			MapTag[v.Field(i).String()] = v.Field(i).String()
-		}
-	})
 }
 
 func (h *Html) Tag(tagName string) (string, error) {
